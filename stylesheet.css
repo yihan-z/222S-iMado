@@ -101,6 +101,7 @@
   }
 
   .centered{
+    background-color: none;
     margin: auto;
     width: 100%;
     padding: 1px;
@@ -112,7 +113,7 @@
   }
 
   .login-input {
-    border: 1.5px solid #009999;
+    border: 1.5px solid #117A65;
     height: 40px;
     width: 60%;
     padding: 2px;
@@ -134,11 +135,12 @@
   .titleline{
     display:block;
     margin:auto;
+    padding-top: 10vh;
+    width: 60%;
     text-align: center;
-    color: gray;
-    width: 80%;
+    color: #117A65;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    border-bottom: 3px solid gray
+    border-bottom: 3px solid #117A65
   }
 
   .general-input {
@@ -179,6 +181,18 @@
     text-shadow: 0px 0px 1px hsla(0,0%,0%,.3);
   }
 
+  /*loading page*/
+  #loading-page{
+    text-align: center;
+  }
+
+  #loading-page img{
+    width: 40vw;
+    height: auto;
+    display: block;
+    margin: auto;
+  }
+
   /*Control board items*/
   #control-device-name{
     margin:0;
@@ -192,8 +206,12 @@
     height: 20%;
     border: 0px;
     box-shadow: inset 0 0 15px #666666;
-    text-shadow: 0px 3px 1px hsla(0,0%,0%,.8);
     background-color: #2ECC71;
+  }
+
+  .control-buttons:active{
+    box-shadow: inset 0 0 15px #82E0AA;
+    background-color: #28B463;
   }
 
   #close-up-button {
@@ -205,8 +223,22 @@
     width: 100vw;
   }
 
-  #open-button{
-    background-image: url( 'img/sun.png' );
+  #status-indicator{
+    /*background-image: url( 'img/sunny.png' );*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30vw;
+    height: 27vh;
+    width: 100vw;
+  }
+
+  #close-down-button{
+    width: 100%;
+    height: 20%;
+    border: 0px;
+    box-shadow: inset 0 0 15px #666666;
+    background-color: #2ECC71;
+    background-image: url( 'img/down-arrow.png' );
     background-position: center;
     background-repeat: no-repeat;
     background-size: 40vw;
@@ -214,13 +246,9 @@
     width: 100vw;
   }
 
-  #close-down-button{
-    background-image: url( 'img/down-arrow.png' );
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 40vw;
-    height: 27vh;
-    width: 100vw;
+  #close-down-button:active{
+    box-shadow: inset 0 0 15px #82E0AA;
+    background-color: #28B463;
   }
 
   .control-button-selected{
@@ -290,7 +318,7 @@
     padding-top: 5vh;
   }
 
-  .submit-button{
+  .submit-buttons{
     width: 70vw;
     height: 7vh;
     color: white;
@@ -299,6 +327,17 @@
     border: none;
     box-shadow: inset 0 0 10px #28B463;
     background-color: #2ECC71;
+  }
+
+  .medium-buttons{
+    width: 33vw;
+    margin: 0 2vw 0 2vw;
+    display: initial
+  }
+
+  .cancel-buttons{
+    background-color: #F87460;
+    box-shadow: inset 0 0 10px #D25440;
   }
 
   #image {

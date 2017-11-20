@@ -19,32 +19,31 @@
   <title>iMado</title>
 </head>
 <body>
+  <!-- App Header -->
+  <div class="tabbar">
+    <p class="nav-bar-title">iMado</p>
+  </div>
+  <!-- App Header ends here -->
+
   <!--Login Page Starts Here-->
-  <div id="login-page" hidden>
-    <!--Navigation Bar-->
-    <div class="container tabbar">
-      <p class="nav-bar-title">iMado</p>
-    </div>
-    <br>
+  <div id="login-page">
     <!--Log in Inputs-->
     <div class="container">
-      <h2 class="titleline">Log In</h2>
+      <h4 class="titleline">Log In</h4>
       <br>
       <div id="login-box">
-        <div class="row">
-          <div class="centered">
-            <div class="login-box">
-              <input class="login-input" type="text" placeholder="Enter Username" id="uname" name="uname" required>
-            </div>
-
-            <div class="login-box">
-              <input class="login-input" type="password" placeholder="Enter Password" id="pwd" name="psw" required>
-            </div>
-
-            <button type="button" class="control-buttons" id="login-page-login-button">Login</button>
-            <br>
-            <button type="button" class="control-buttons" id="login-page-register-button">Register</button>
+        <div class="centered">
+          <div class="login-box">
+            <input class="login-input" type="text" placeholder="Enter Username" id="uname" name="uname" required>
           </div>
+          <div class="login-box">
+            <input class="login-input" type="password" placeholder="Enter Password" id="pwd" name="psw" required>
+          </div>
+          <br>
+          <button type="button" class="submit-buttons" id="login-page-login-button">Login</button>
+          <br>
+          <button type="button" class="submit-buttons medium-buttons" id="login-page-register-button">Register</button>
+          <button type="button" class="submit-buttons medium-buttons" id="login-page-recover-button">Recover</button>
         </div>
       </div>
     </div>
@@ -52,15 +51,10 @@
   <!--Login Page Ends Here-->
   <!--Password Recovery Page Starts Here-->
   <div id="pwd-recovery-page" hidden>
-    <!--Navigation Bar-->
-    <div class="container tabbar">
-      <p class="nav-bar-title">Smart Garage</p>
-    </div>
-    <br>
     <!--Login / Password Recovery Inputs-->
     <div id="pwd-recovery-box">
       <div class="container">
-        <h2 class="titleline">Password Recovery</h2>
+        <h4 class="titleline">Password Recovery</h4>
         <br>
         <div class="row">
           <div class="centered">
@@ -79,14 +73,15 @@
             </div>
             <br>
 
-            <button type="button" class="bottom-buttons" id="pwd-recovery-page-recover-button">Recover</button>
+            <button type="button" class="submit-buttons" id="pwd-recovery-page-recover-button">Recover</button>
           </div>
         </div>
         <br>
-        <div class="container" style="background-color:#f1f1f1">
-          <div class="centered">
-            <span class="psw"><button type="button" class="bottom-buttons" id="pwd-recovery-page-cancel-button">Cancel</button> | <button type="button" class="bottom-buttons" id="pwd-recovery-page-register-button">Register</button></span>
-          </div>
+        <div class="centered">
+          <span class="psw">
+            <button type="button" class="submit-buttons medium-buttons cancel-buttons" id="pwd-recovery-page-cancel-button">Cancel</button>
+            <button type="button" class="submit-buttons medium-buttons" id="pwd-recovery-page-register-button">Register</button>
+          </span>
         </div>
       </div>
     </div>
@@ -94,15 +89,10 @@
   <!--Password Recovery Page Ends Here-->
   <!--Register Page Starts Here-->
   <div id="register-page" hidden>
-    <!--Navigation Bar-->
-    <div class="container tabbar">
-      <p class="nav-bar-title">Smart Garage</p>
-    </div>
-    <br>
     <!--Log in / Register Inputs-->
     <div id="register-box">
       <div class="container">
-        <h2 class="titleline">Sign Up</h2>
+        <h4 class="titleline">Sign Up</h4>
         <br>
         <div class="centered">
           <div class="login-box">
@@ -119,49 +109,44 @@
             <input class="login-input" type="password" placeholder="Repeat Password" id="reg-pwd-confirm" name="psw-repeat" required>
           </div>
         </div>
-        <div class="centered" hidden>
-          <div class="login-box">
-            <input class="login-input" type="text" placeholder="Enter Phone Number" id="reg-phone" name="phone" required>
-          </div>
-        </div>
-        <div class="centered" hidden>
-          <div class="login-box">
-            <input class="login-input" type="text" placeholder="Enter Garage ID" id="reg-garageId" name="garage" required>
-          </div>
-        </div>
-        <div class="centered" hidden><input type="checkbox" id="remember" checked="checked"> Remember me
-          <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-        </div>
-        <div class="clearfix centered">
-          <button type="button" class="control-buttons" id="register-page-signup-button">Sign Up</button>
+        <br>
+        <div class="centered">
+          <button type="button" class="submit-buttons" id="register-page-signup-button">Sign Up</button>
           <br>
-          <button type="button"  class="red-buttons" id="register-page-cancel-button">Cancel</button>
+          <button type="button"  class="submit-buttons cancel-buttons" id="register-page-cancel-button">Cancel</button>
         </div>
       </div>
     </div>
   </div>
   <!--Register Page Ends Here-->
 
+  <!-- Loading Page Starts Here -->
+  <div id="loading-page" hidden>
+    <h4>Loading...</h4>
+    <img src="img/loading.png"/>
+  </div>
+  <!-- Loading Page Ends Here -->
   <!--App main page, with two tabs-->
-  <div class="tabbar">
-    <p class="nav-bar-title">iMado</p>
-  </div>
-
-  <div class="tab-bar">
-      <button class="tab-bar-item tab-button tablink tab-selected" onclick="openTab(event,'control')">Control</button>
-      <button class="tab-bar-item tab-button tablink" onclick="openTab(event,'timer')">Timer</button>
-  </div>
 
   <!-- Main tab: Control -->
-  <div class="tab-content" id="control">
-      <button class="control-buttons" id="close-up-button"></button>
-      <button class="control-buttons control-button-selected" id="open-button"></button>
-      <button class="control-buttons" id="close-down-button"></button>
+  <div class="tab-content" id="control-page" hidden>
+    <div class="tab-bar">
+      <button class="tab-bar-item tab-button tablink tab-selected" onclick="openTab(event,'control-page')">Control</button>
+      <button class="tab-bar-item tab-button tablink" onclick="openTab(event,'timer-page')">Timer</button>
+    </div>
+
+    <input type="button" class="control-buttons" id="close-up-button"></button>
+    <input type="button" class="control-buttons control-button-selected" id="status-indicator" disabled></button>
+    <input type="button" class="control-buttons" id="close-down-button"></button>
   </div>
   <!-- Main tab: Control ends here -->
 
   <!-- Main tab: Timers -->
-  <div class="tab-content" id="timer">
+  <div class="tab-content" id="timer-page" hidden>
+    <div class="tab-bar">
+      <button class="tab-bar-item tab-button tablink" onclick="openTab(event,'control-page')">Control</button>
+      <button class="tab-bar-item tab-button tablink tab-selected" onclick="openTab(event,'timer-page')">Timer</button>
+    </div>
     <ul class="timers">
       <li class="timer-items" id="close-timer">
         <a class="timer-item-links" href="#" id="close-timer-item">Close Timer<span class="timer-indicators" id="close-indicator">Not Set</span></a>
@@ -176,8 +161,8 @@
             <input type="radio" name="close-option" value="close-down">&nbsp;&nbsp;&nbsp;Close Down</input>
           </div>
         </div>
-        <input type="button" class="submit-button" id="auto-close-submit" value="Update"></input>
-
+        <input type="button" class="submit-buttons" id="auto-close-submit" value="Update"></input><br>
+        <input type="button" class="submit-buttons cancel-buttons" id="auto-close-cancel" value="Clear" disabled></input>
       </li>
       <li class="timer-items" id="open-timer">
         <a class="timer-item-links" href="#" id="open-timer-item">Open Timer<span class="timer-indicators" id="open-indicator">Not Set</span></a>
@@ -187,12 +172,12 @@
           <p>Set Open Time At </p>
           <input type="time" class="time-input-fields" id="open-hour" min="0" max="23"></input>
         </div>
-        <input type="button" class="submit-button" id="auto-open-submit" value="Update"></input>
-
+        <input type="button" class="submit-buttons" id="auto-open-submit" value="Update"></input><br>
+        <input type="button" class="submit-buttons cancel-buttons" id="auto-open-cancel" value="Clear" disabled></input>
       </li></ul>
+    </div>
+    <!-- Main tab: Timers ends here -->
   </div>
-  <!-- Main tab: Timers ends here -->
-
   <!--Controls Page Ends Here-->
   <script type="text/javascript" src="all.js"></script>
 
