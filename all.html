@@ -152,19 +152,47 @@
       <button class="tab-bar-item tab-button tablink" onclick="openTab(event,'timer')">Timer</button>
   </div>
 
-  <!-- main tab: control -->
+  <!-- Main tab: Control -->
   <div class="tab-content" id="control">
       <button class="control-buttons" id="close-up-button"></button>
       <button class="control-buttons control-button-selected" id="open-button"></button>
       <button class="control-buttons" id="close-down-button"></button>
   </div>
+  <!-- Main tab: Control ends here -->
 
+  <!-- Main tab: Timers -->
   <div class="tab-content" id="timer">
-    <div class="timers" id="close-timer">
-      <p>Auto Close<span class="timer-indicators" id="close-indicator">not set</span></p>
-    </div>
-    <p> nothing here </p>
+    <ul class="timers">
+      <li class="timer-items" id="close-timer">
+        <a class="timer-item-links" href="#" id="close-timer-item">Close Timer<span class="timer-indicators" id="close-indicator">Not Set</span></a>
+      </li>
+      <li class="timer-item-pickers" id="close-picker" hidden>
+        <div class="time-picker-content">
+          <p>Set Close Time At </p>
+          <input type="time" class="time-input-fields" id="close-hour" min="0" max="23"></input>
+          <div class="radio-pickers">
+            <input type="radio" name="close-option" value="close-up">&nbsp;&nbsp;&nbsp;Close Up</input>
+            <br>
+            <input type="radio" name="close-option" value="close-down">&nbsp;&nbsp;&nbsp;Close Down</input>
+          </div>
+        </div>
+        <input type="button" class="submit-button" id="auto-close-submit" value="Update"></input>
+
+      </li>
+      <li class="timer-items" id="open-timer">
+        <a class="timer-item-links" href="#" id="open-timer-item">Open Timer<span class="timer-indicators" id="open-indicator">Not Set</span></a>
+      </li>
+      <li class="timer-item-pickers" id="open-picker" hidden>
+        <div class="time-picker-content">
+          <p>Set Open Time At </p>
+          <input type="time" class="time-input-fields" id="open-hour" min="0" max="23"></input>
+        </div>
+        <input type="button" class="submit-button" id="auto-open-submit" value="Update"></input>
+
+      </li></ul>
   </div>
+  <!-- Main tab: Timers ends here -->
+
   <!--Controls Page Ends Here-->
   <script type="text/javascript" src="all.js"></script>
 
