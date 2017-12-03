@@ -1,3 +1,6 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
 /*Responsive design for mobile devices*/
 @media screen and (max-width: 600px) {
   *{
@@ -8,9 +11,9 @@
     margin: 0;
     height: 100%;
     overflow: hidden;
-    background-color: #D0ECE7;
+    background-color: #E8F6F3;
   }
-
+/*
   .statusBarContainer {
     margin-top: 5px;
     width: 100%;
@@ -21,7 +24,7 @@
     width: 1%;
     height: 30px;
     background-color: #4CAF50;;
-  }
+  }*/
 
   /*Color classes*/
 
@@ -69,9 +72,8 @@
 
   .tabbar{
     width:100%;
-    height:9%;
+    height:5vh;
     font-size: 130%;
-    border-bottom: 1px solid gray;
   }
 
   .nav li {
@@ -87,10 +89,12 @@
     background-color:#e6e6e6;
     margin:0;
     color: #333333;
-    padding: 10px;
+    padding: 10px 0 10px 0;
     text-align: center;
-    width: 100%;
+    width: 100vw;
     height:100%;
+    border-bottom: 1px solid gray;
+
   }
 
   .img-centered{
@@ -101,10 +105,10 @@
   }
 
   .centered{
-    background-color: none;
+    /*background-color: none;*/
     margin: auto;
     width: 100%;
-    padding: 1px;
+    /*padding: 1px;*/
     text-align: center;
   }
 
@@ -194,6 +198,11 @@
   }
 
   /*Control board items*/
+  .tab-content{
+    margin-top: 4vh;
+    position: absolute;
+  }
+
   #control-device-name{
     margin:0;
     color: #009999;
@@ -203,7 +212,7 @@
 
   .control-buttons {
     width: 100%;
-    height: 20%;
+    /*height: 20%;*/
     border: 0px;
     box-shadow: inset 0 0 15px #666666;
     background-color: #2ECC71;
@@ -252,7 +261,7 @@
   }
 
   .control-button-selected{
-    background-color: #D0ECE7;
+    background-color: #E8F6F3;
     box-shadow: none;
   }
 
@@ -260,35 +269,44 @@
     background-color: #2ECC71;
     margin: 0;
     padding: 0;
-    font-size: 120%;
+    font-size: 110%;
     color: #117A65;
     text-align: center;
   }
 
   .timer-items{
     height: 7vh;
-    padding:3% 5% 3% 5%;
+    width: 100vw;
+    /*padding:3%;*/
     color: white;
     text-align: left;
     border-bottom: 1px solid #EEEEEE;
   }
 
   .timer-item-links{
+    color: white;
+    margin-top: 10%;
     list-style-type: none;
     text-decoration: none;
+    /*height: 7vh;*/
+  }
+
+  .timer-names{
+    float: left;
+    margin: 3%;
+    color: black;
   }
 
   .timer-indicators{
     float: right;
-    color: white;
-    vertical-align: center;
-
+    margin: 3%;
+    color: black;
   }
 
   .timer-item-pickers{
-    background-color: #82E0AA;
+    background-color: #E8F6F3;
     margin: 0;
-    height: 68vh;
+    height: 54vh;
     width: 100%;
     border-bottom: 1px solid #EEEEEE;
   }
@@ -303,6 +321,7 @@
     height: 7vh;
     color: #117A65;
     text-align: center;
+    font-size: 130%;
     display: block;
     margin: auto;
     border: none;
@@ -424,5 +443,34 @@
     margin: auto;
     text-align: center;
     padding: 2%;
+  }
+
+  .range-pickers{
+    width: 280px;
+    margin: 0 auto;
+  }
+
+  .timer-item-pickers > div > label > img {
+    height: 10vh;
+    width: auto;
+    margin: 0 5vw;
+    padding: 3%;
+  }
+
+  .timer-item-pickers > div > label > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+  }
+
+  .timer-item-pickers > div > label > input + img{ /* IMAGE STYLES */
+    cursor:pointer;
+    /*border:2px solid transparent;*/
+
+  }
+
+  .timer-item-pickers > div > label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+    /*border:2px solid #2ECC71;*/
+    border-radius: 10%;
+    background-color: #D6EAF8;
   }
 }

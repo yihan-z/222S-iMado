@@ -1,23 +1,45 @@
-<!doctype html>
-<head lang="en">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+<!DOCTYPE html>
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<html>
 
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-  <!-- Particle JS -->
-  <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 
-  <!-- W3 CSS stylesheet -->
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <title>iMado</title>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Particle JS -->
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+
+    <!-- W3 CSS stylesheet -->
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+
+    <title>iMado</title>
 </head>
+
 <body>
   <!-- App Header -->
   <div class="tabbar">
@@ -26,7 +48,7 @@
   <!-- App Header ends here -->
 
   <!--Login Page Starts Here-->
-  <div id="login-page">
+  <div id="login-page" hidden>
     <!--Log in Inputs-->
     <div class="container">
       <h4 class="titleline">Log In</h4>
@@ -129,10 +151,10 @@
   <!--App main page, with two tabs-->
 
   <!-- Main tab: Control -->
-  <div class="tab-content" id="control-page" hidden>
+  <div class="tab-content" id="control-page">
     <div class="tab-bar">
       <button class="tab-bar-item tab-button tablink tab-selected" onclick="openTab(event,'control-page')">Control</button>
-      <button class="tab-bar-item tab-button tablink" onclick="openTab(event,'timer-page')">Timer</button>
+      <button class="tab-bar-item tab-button tablink" onclick="openTab(event,'timer-page')">Auto</button>
     </div>
 
     <input type="button" class="control-buttons" id="close-up-button"></button>
@@ -142,44 +164,93 @@
   <!-- Main tab: Control ends here -->
 
   <!-- Main tab: Timers -->
-  <div class="tab-content" id="timer-page" hidden>
+  <div class="tab-content" id="timer-page">
     <div class="tab-bar">
       <button class="tab-bar-item tab-button tablink" onclick="openTab(event,'control-page')">Control</button>
-      <button class="tab-bar-item tab-button tablink tab-selected" onclick="openTab(event,'timer-page')">Timer</button>
+      <button class="tab-bar-item tab-button tablink tab-selected" onclick="openTab(event,'timer-page')">Auto</button>
     </div>
-    <ul class="timers">
+    <ul class="list timers">
+      <!-- START: close timer -->
       <li class="timer-items" id="close-timer">
-        <a class="timer-item-links" href="#" id="close-timer-item">Close Timer<span class="timer-indicators" id="close-indicator">Not Set</span></a>
+        <a class="timer-item-links" href="#" id="close-timer-item"><span class="timer-names">Close Timer</span><span class="timer-indicators" id="close-indicator">not set</span></a>
       </li>
       <li class="timer-item-pickers" id="close-picker" hidden>
         <div class="time-picker-content">
-          <p>Set Close Time At </p>
-          <input type="time" class="time-input-fields" id="close-hour" min="0" max="23"></input>
-          <div class="radio-pickers">
-            <input type="radio" name="close-option" value="close-up">&nbsp;&nbsp;&nbsp;Close Up</input>
-            <br>
-            <input type="radio" name="close-option" value="close-down">&nbsp;&nbsp;&nbsp;Close Down</input>
+          <div class="centered">
+            <p>Set Close Time At </p>
+            <input type="time" class="time-input-fields" id="close-time"></input>
           </div>
         </div>
-        <input type="button" class="submit-buttons" id="auto-close-submit" value="Update"></input><br>
-        <input type="button" class="submit-buttons cancel-buttons" id="auto-close-cancel" value="Clear" disabled></input>
+        <button type="button" class="submit-buttons" id="auto-close-submit" value="Update">Update</button><br>
+        <button type="button" class="submit-buttons cancel-buttons" id="auto-close-cancel" value="Clear" disabled>Clear</button>
       </li>
+      <!-- END: close timer -->
+      <!-- START: open timer -->
       <li class="timer-items" id="open-timer">
-        <a class="timer-item-links" href="#" id="open-timer-item">Open Timer<span class="timer-indicators" id="open-indicator">Not Set</span></a>
+        <a class="timer-item-links" href="#" id="open-timer-item"><span class="timer-names">Open Timer</span><span class="timer-indicators" id="open-indicator">not set</span></a>
       </li>
       <li class="timer-item-pickers" id="open-picker" hidden>
         <div class="time-picker-content">
-          <p>Set Open Time At </p>
-          <input type="time" class="time-input-fields" id="open-hour" min="0" max="23"></input>
+          <div class="centered">
+            <p>Set Open Time At </p>
+            <input type="time" class="time-input-fields" id="open-time"></input>
+          </div>
         </div>
-        <input type="button" class="submit-buttons" id="auto-open-submit" value="Update"></input><br>
-        <input type="button" class="submit-buttons cancel-buttons" id="auto-open-cancel" value="Clear" disabled></input>
-      </li></ul>
+        <button type="button" class="submit-buttons" id="auto-open-submit" value="Update">Update</button><br>
+        <button type="button" class="submit-buttons cancel-buttons" id="auto-open-cancel" value="Clear" disabled>Clear</button>
+      </li>
+      <!-- END: open timer -->
+      <!-- START: Light sensor features - OPEN -->
+      <li class="timer-items" id="light-open-timer">
+        <a class="timer-item-links" href="#" id="light-open-timer-item"><span class="timer-names">Open Light</span><span class="timer-indicators" id="light-open-indicator">not set</span></a>
+      </li>
+      <li class="timer-item-pickers" id="light-open-picker" hidden>
+        <br>
+        <div class="centered">
+          <p>Open blinds when light is </p>
+          <label class="radio-button radio-button--material">
+            <input type="radio" id="light-open-dim" name="light-open" checked>
+            <img class="input-img" src="img/dim.png">
+          </label>
+          <label class="radio-button radio-button--material">
+            <input type="radio" id="light-open-bright" name="light-open">
+            <img class="input-img" src="img/bright.png">
+          </label>
+        <div>
+        <br>
+        <button type="button" class="submit-buttons" id="light-open-submit" value="Update">Update</button><br>
+        <button type="button" class="submit-buttons cancel-buttons" id="light-open-cancel" value="Clear" disabled>Clear</button>
+      </li>
+      <!-- END: Light sensor features - OPEN -->
+      <!-- START: Light sensor features - CLOSE -->
+      <li class="timer-items" id="light-close-timer">
+        <a class="timer-item-links" href="#" id="light-close-timer-item"><span class="timer-names">Open Light</span><span class="timer-indicators" id="light-close-indicator">not set</span></a>
+      </li>
+      <li class="timer-item-pickers" id="light-close-picker" hidden>
+        <br>
+        <div class="centered">
+          <p>Close blinds when light is </p>
+          <label class="radio-button radio-button--material">
+            <input type="radio" id="light-close-dim" name="light-close" checked>
+            <img class="input-img" src="img/dim.png">
+          </label>
+          <label class="radio-button radio-button--material">
+            <input type="radio" id="light-close-bright" name="light-close">
+            <img class="input-img" src="img/bright.png">
+          </label>
+        <div>
+        <br>
+        <button type="button" class="submit-buttons" id="light-close-submit" value="Update">Update</button><br>
+        <button type="button" class="submit-buttons cancel-buttons" id="light-close-cancel" value="Clear" disabled>Clear</button>
+      </li>
+      <!-- END: Light sensor features - CLOSE -->
+      </ul>
     </div>
     <!-- Main tab: Timers ends here -->
   </div>
   <!--Controls Page Ends Here-->
-  <script type="text/javascript" src="all.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
 
 </body>
+
 </html>
